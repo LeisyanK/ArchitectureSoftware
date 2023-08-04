@@ -1,38 +1,36 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import Classes.ItemGenerator;
-import Classes.Fabrics.BronzeFabric;
-import Classes.Fabrics.ChampionFabric;
-import Classes.Fabrics.CrystalFabric;
-import Classes.Fabrics.GemFabric;
-import Classes.Fabrics.GoldFabric;
-import Classes.Fabrics.MasterFabric;
-import Classes.Fabrics.SilverFabric;
-import Classes.Fabrics.TitanFabric;
+import Rewards.Bronze.BronzeFabric;
+import Rewards.Champion.ChampionFabric;
+import Rewards.Crystal.CrystalFabric;
+import Rewards.Gem.GemFabric;
+import Rewards.Gold.GoldFabric;
+import Rewards.Master.MasterFabric;
+import Rewards.Silver.SilverFabric;
+import Rewards.Titan.TitanFabric;
 
 public class App {
+    /**
+     * Генерация фабрик по созданию наград.
+     * Выдача наград, сгенерированных случайным образом.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         ItemGenerator fab1 = new GoldFabric();  // полиморфизм
-        fab1.openReward();
         ItemGenerator fab2 = new GemFabric();  
-        fab2.openReward();
         ItemGenerator fab3 = new BronzeFabric();  
-        fab3.openReward();
         ItemGenerator fab4 = new ChampionFabric(); 
-        fab4.openReward();
         ItemGenerator fab5 = new CrystalFabric();  
-        fab5.openReward();
         ItemGenerator fab6 = new MasterFabric();  
-        fab6.openReward();
         ItemGenerator fab7 = new SilverFabric();  
-        fab7.openReward();
         ItemGenerator fab8 = new TitanFabric();  
-        fab8.openReward();
 
-        // System.out.println("Hello, World!");
         Random rnd = ThreadLocalRandom.current();
         List<ItemGenerator> fabricList = new ArrayList<>();
         fabricList.add(fab1);
@@ -43,6 +41,11 @@ public class App {
         fabricList.add(fab6);
         fabricList.add(fab7);
         fabricList.add(fab8);
+
+        // второй вариант заполнения списка:
+        List<ItemGenerator> fabricList2 = new ArrayList<>(
+            Arrays.asList(fab1, fab2, fab3, fab4, fab5, fab6, fab7, fab8)
+        );
 
         for (int i = 0; i < 20; i++) {
             int index = Math.abs(rnd.nextInt(fabricList.size()));
